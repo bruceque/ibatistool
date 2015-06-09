@@ -77,6 +77,10 @@ public class MapperProcessor extends BaseProcessor{
         bw.newLine();
         bw.write("\t" + "List<"+BEAN_NAME+"> selectByBaseConditionPageable ( Map<String,Object> map );");
         bw.newLine();
+        bw = buildMethodComment(bw, "动态条件查询总数目");
+        bw.newLine();
+        bw.write("\t" + "Integer countByBaseCondition ( Map<String,Object> map );");
+        bw.newLine();
 
         // ----------定义Mapper中的方法End----------
         bw.newLine();
