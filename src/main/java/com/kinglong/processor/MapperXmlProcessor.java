@@ -1,16 +1,30 @@
 package com.kinglong.processor;
 
 import com.kinglong.config.Config;
-import com.kinglong.processor.sql.BaseSqlProcessor;
+import com.kinglong.processor.sql.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 /**
  * Created by chenjinlong on 15/6/5.
  */
-public class MapperXmlProcessor extends BaseSqlProcessor{
+public class MapperXmlProcessor extends BaseProcessor{
+    public static List<SqlProcessor> sqlProcessorList = new ArrayList<SqlProcessor>();
+
+    static {
+        sqlProcessorList.add(new BaseResultMapSqlProcessor());
+        sqlProcessorList.add(new BaseColumnListSqlProcessor());
+        sqlProcessorList.add(new DeleteByPrimaryKeySqlProcessor());
+        sqlProcessorList.add(new InsertSelectiveSqlProcessor());
+        sqlProcessorList.add(new InsertSqlProcessor());
+        sqlProcessorList.add(new SelectByPrimaryKeySqlProcessor());
+        sqlProcessorList.add(new UpdateByPrimaryKey());
+        sqlProcessorList.add(new UpdateByPrimaryKeySelective());
+    }
     /**
      *  构建实体类映射XML文件
      *
@@ -20,6 +34,7 @@ public class MapperXmlProcessor extends BaseSqlProcessor{
      * @throws IOException
      */
     public static void buildMapperXml(List<String> columns, List<String> types, List<String> comments) throws IOException {
+
         File folder = new File(Config.XML_PATH);
         if ( !folder.exists() ) {
             folder.mkdirs();
@@ -40,43 +55,16 @@ public class MapperXmlProcessor extends BaseSqlProcessor{
         bw.newLine();
         bw.newLine();
 
-        bw.write("\t<!--实体映射-->");
-        bw.newLine();
-        bw.write("\t<resultMap id=\"BaseResultMap\" type=\"" + Config.BEAN_PACKAGE + "." + BEAN_NAME + "\">");
-        bw.newLine();
-        bw.write("\t\t<!--" + comments.get(0) + "-->");
-        bw.newLine();
-        bw.write("\t\t<id column=\"" + columns.get(0) + "\" property=\"" + processField(columns.get(0)) + "\"" +
-                generatorJdbcType(types.get(0))+"/>");
-        bw.newLine();
-        int size = columns.size();
-        for ( int i = 1 ; i < size ; i++ ) {
-            bw.write("\t\t<!--" + comments.get(i) + "-->");
-            bw.newLine();
-            bw.write("\t\t<result column=\""
-                    + columns.get(i) + "\" property=\"" + processField(columns.get(i)) + "\" " + generatorJdbcType(types.get(i))+"/>");
-            bw.newLine();
-        }
-        bw.write("\t</resultMap>");
-
-        bw.newLine();
-        bw.newLine();
-        bw.newLine();
 
         // 下面开始写SqlMapper中的方法
         // this.outputSqlMapperMethod(bw, columns, types);
-        BaseSqlProcessor.buildSQL(bw, columns, types);
+//        BaseSqlProcessor.buildSQL(bw, columns, types);
+        for (SqlProcessor sqlProcessor:sqlProcessorList) {
+            sqlProcessor.buildSQL(bw,columns,types,comments);
+        }
 
         bw.write("</mapper>");
         bw.flush();
         bw.close();
-    }
-
-    private static String generatorJdbcType(String type) {
-        String str = BaseProcessor.processJdbcType(type);
-        if (str==null) {
-            return "";
-        }
-        return " jdbcType=\""+str+"\" ";
     }
 }
