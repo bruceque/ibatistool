@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class BaseColumnListSqlProcessor extends AbstractSqlProcessor {
+public class BaseColumnListProcessor extends AbstractSqlProcessor {
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types,List<String> comments ) throws IOException {
         int size = columns.size();
         // 通用结果列

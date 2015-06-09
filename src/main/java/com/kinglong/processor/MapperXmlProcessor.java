@@ -5,7 +5,6 @@ import com.kinglong.processor.sql.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -13,17 +12,21 @@ import java.util.List;
  * Created by chenjinlong on 15/6/5.
  */
 public class MapperXmlProcessor extends BaseProcessor{
-    public static List<SqlProcessor> sqlProcessorList = new ArrayList<SqlProcessor>();
+    public static List<BaseSqlProcessor> baseSqlProcessorList = new ArrayList<BaseSqlProcessor>();
 
     static {
-        sqlProcessorList.add(new BaseResultMapSqlProcessor());
-        sqlProcessorList.add(new BaseColumnListSqlProcessor());
-        sqlProcessorList.add(new DeleteByPrimaryKeySqlProcessor());
-        sqlProcessorList.add(new InsertSelectiveSqlProcessor());
-        sqlProcessorList.add(new InsertSqlProcessor());
-        sqlProcessorList.add(new SelectByPrimaryKeySqlProcessor());
-        sqlProcessorList.add(new UpdateByPrimaryKey());
-        sqlProcessorList.add(new UpdateByPrimaryKeySelective());
+        baseSqlProcessorList.add(new BaseResultMapSqlProcessor());
+        baseSqlProcessorList.add(new BaseConditionSqlProcessor());
+        baseSqlProcessorList.add(new SelectByBaseConditionSqlProcessor());
+        baseSqlProcessorList.add(new BaseColumnListProcessor());
+        baseSqlProcessorList.add(new DeleteByPrimaryKeyProcessor());
+        baseSqlProcessorList.add(new InsertSelectiveProcessor());
+        baseSqlProcessorList.add(new InsertProcessor());
+        baseSqlProcessorList.add(new SelectByPrimaryKeyProcessor());
+        baseSqlProcessorList.add(new UpdateByPrimaryKeyProcessor());
+        baseSqlProcessorList.add(new UpdateByPrimaryKeySelectiveProcessor());
+        baseSqlProcessorList.add(new BatchInsertProcessor());
+        baseSqlProcessorList.add(new SelectByBaseConditionProcessor());
     }
     /**
      *  构建实体类映射XML文件
@@ -59,8 +62,8 @@ public class MapperXmlProcessor extends BaseProcessor{
         // 下面开始写SqlMapper中的方法
         // this.outputSqlMapperMethod(bw, columns, types);
 //        BaseSqlProcessor.buildSQL(bw, columns, types);
-        for (SqlProcessor sqlProcessor:sqlProcessorList) {
-            sqlProcessor.buildSQL(bw,columns,types,comments);
+        for (BaseSqlProcessor baseSqlProcessor : baseSqlProcessorList) {
+            baseSqlProcessor.buildSQL(bw,columns,types,comments);
         }
 
         bw.write("</mapper>");

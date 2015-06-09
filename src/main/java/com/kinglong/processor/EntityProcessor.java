@@ -30,8 +30,8 @@ public class EntityProcessor extends BaseProcessor{
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(beanFile)));
         bw.write("package " + Config.BEAN_PACKAGE + ";");
-        bw.newLine();
-        bw.write("import java.io.Serializable;");
+//        bw.newLine();
+//        bw.write("import java.io.Serializable;");
         bw.newLine();
         bw.write("import lombok.Data;");
         //      bw.write("import javax.persistence.Entity;");
@@ -42,7 +42,7 @@ public class EntityProcessor extends BaseProcessor{
         //      bw.write("@Entity");
         bw.write("@Data");
         bw.newLine();
-        bw.write("public class " + BEAN_NAME + " implements Serializable {");
+        bw.write("public class " + BEAN_NAME + " {");
         bw.newLine();
         bw.newLine();
         int size = columns.size();

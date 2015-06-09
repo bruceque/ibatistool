@@ -3,10 +3,7 @@ package com.kinglong.generator;
 import com.kinglong.config.Config;
 import com.kinglong.db.Conn;
 import com.kinglong.db.DataBaseManager;
-import com.kinglong.processor.BaseProcessor;
-import com.kinglong.processor.EntityProcessor;
-import com.kinglong.processor.MapperProcessor;
-import com.kinglong.processor.MapperXmlProcessor;
+import com.kinglong.processor.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -45,6 +42,7 @@ public class Generator {
             BaseProcessor.processTable(table);
             //          this.outputBaseBean();
             String tableComment = tableComments.get(BaseProcessor.TABLE_NAME);
+            BeanQueryParamProcessor.buildBeanQueryParam(columns,types,comments,tableComment);
             EntityProcessor.buildEntityBean(columns, types, comments, tableComment);
             MapperProcessor.buildMapper();
             MapperXmlProcessor.buildMapperXml(columns, types, comments);
@@ -70,6 +68,7 @@ public class Generator {
         BaseProcessor.TABLE_NAME = tableName;
         BaseProcessor.processTable(tableName);
         String tableComment = tableComments.get(BaseProcessor.TABLE_NAME);
+//        BeanQueryParamProcessor.buildBeanQueryParam(columns, types, comments, tableComment);
         EntityProcessor.buildEntityBean(columns, types, comments, tableComment);
         MapperProcessor.buildMapper();
         MapperXmlProcessor.buildMapperXml(columns, types, comments);

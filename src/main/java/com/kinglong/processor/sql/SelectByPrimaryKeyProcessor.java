@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class SelectByPrimaryKeySqlProcessor extends AbstractSqlProcessor {
+public class SelectByPrimaryKeyProcessor extends AbstractSqlProcessor {
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types,List<String> comments ) throws IOException {
         // 查询（根据主键ID查询）
         bw.write("\t<!-- 查询（根据主键ID查询） -->");

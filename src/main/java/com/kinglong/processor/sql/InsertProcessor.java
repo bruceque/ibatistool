@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class InsertSqlProcessor extends AbstractSqlProcessor {
+public class InsertProcessor extends AbstractSqlProcessor {
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types,List<String> comments ) throws IOException {
         int size = columns.size();
         // 添加insert方法

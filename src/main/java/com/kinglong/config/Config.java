@@ -26,19 +26,30 @@ public class Config {
 
 
 
+
+
     public final static String TABLE = "db_appoint";
+
+    public final static String
+            BASE_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/shop/dal/src/main/java/com/tqmall/shop/";
+
+    public final static String BASE_PACKAGE = "com.tqmall.shop";
 
     public final static String  MODULE_NAME = "qa_autoparts"; // 对应模块名称（根据自己模块做相应调整!!!务必修改^_^）
 
-    public final static String BEAN_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/shop/dal/src/main/java/com/tqmall/shop/"+MODULE_NAME+"/entity";
+    public final static String BEAN_PATH = BASE_PATH+MODULE_NAME+"/entity";
 
-    public final static String MAPPER_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/shop/dal/src/main/java/com/tqmall/shop/"+MODULE_NAME+"/mapper";
+    public final static String MAPPER_PATH = BASE_PATH+MODULE_NAME+"/mapper";
 
-    public final static String XML_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/shop/dal/src/main/java/com/tqmall/shop/"+MODULE_NAME+"/xml";
+    public final static String XML_PATH = BASE_PATH+MODULE_NAME+"/xml";
 
-    public final static String BEAN_PACKAGE = "com.tqmall.shop." + MODULE_NAME + ".entity";
+    public final static String BEAN_PARAM_PATH = BASE_PATH+MODULE_NAME+"/param";
 
-    public final static String MAPPER_PACKAGE = "com.tqmall.shop." + MODULE_NAME + ".mapper";
+    public final static String BEAN_PACKAGE = BASE_PACKAGE+"." + MODULE_NAME + ".entity";
+
+    public final static String BEAN_PARAM_PACKAGE = BASE_PACKAGE+"."+MODULE_NAME+".param";
+
+    public final static String MAPPER_PACKAGE = BASE_PACKAGE+"." + MODULE_NAME + ".mapper";
 
     public final static String DRIVER_NAME = "com.mysql.jdbc.Driver";
 

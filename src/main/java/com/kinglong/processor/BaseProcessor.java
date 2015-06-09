@@ -18,6 +18,16 @@ public class BaseProcessor {
 
     public static String MAPPER_NAME = null;
 
+    public static String BEAN_PARAM_NAME = null;
+
+    public static String BEAN_FULL_NAME = null;
+
+    public static String BEAN_PARAM_LIST_NAME = null;
+
+    public static String BEAN_QUERY_NAME = null;
+
+    public static String BEAN_QUERY_PARAM_NAME = null;
+
 
     public static void processTable( String table ) {
         StringBuffer sb = new StringBuffer(table.length());
@@ -30,6 +40,11 @@ public class BaseProcessor {
         }
         BEAN_NAME = sb.toString()+"DO";
         MAPPER_NAME = sb.toString() + "Mapper";
+        BEAN_PARAM_NAME = processResultMapId(BEAN_NAME);
+        BEAN_FULL_NAME = Config.BEAN_PACKAGE+"."+BEAN_NAME;
+        BEAN_PARAM_LIST_NAME = BEAN_PARAM_NAME+"List";
+        BEAN_QUERY_NAME = sb.toString()+"QueryParam";
+        BEAN_QUERY_PARAM_NAME = processResultMapId(BEAN_PARAM_NAME);
     }
 
 

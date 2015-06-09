@@ -6,7 +6,7 @@ import com.kinglong.processor.BaseProcessor;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public abstract class AbstractSqlProcessor extends BaseProcessor implements SqlProcessor {
+public abstract class AbstractSqlProcessor extends BaseProcessor implements BaseSqlProcessor {
     String tempField = null;
 
     protected static String generatorRetStr() {

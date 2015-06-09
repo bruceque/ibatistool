@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class DeleteByPrimaryKeySqlProcessor extends AbstractSqlProcessor {
+public class DeleteByPrimaryKeyProcessor extends AbstractSqlProcessor {
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types,List<String> comments ) throws IOException {
         // 删除（根据主键ID删除）
         bw.write("\t<!--删除：根据主键ID删除-->");
