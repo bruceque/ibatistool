@@ -81,6 +81,10 @@ public class MapperProcessor extends BaseProcessor{
         bw.newLine();
         bw.write("\t" + "Integer countByBaseCondition ( Map<String,Object> map );");
         bw.newLine();
+        bw = buildMethodComment(bw, "批量更新");
+        bw.newLine();
+        bw.write("\t" + "Integer batchUpdateById ( @Param(\""+BEAN_PARAM_LIST_NAME+"\") List<"+BEAN_NAME+"> "+BEAN_PARAM_LIST_NAME+" );");
+        bw.newLine();
 
         // ----------定义Mapper中的方法End----------
         bw.newLine();

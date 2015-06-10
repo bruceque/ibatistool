@@ -8,6 +8,7 @@ import com.kinglong.processor.BaseProcessor;
  */
 public abstract class AbstractSqlProcessor extends BaseProcessor implements BaseSqlProcessor {
     String tempField = null;
+    String tempColumn = null;
 
     protected static String generatorRetStr() {
         if (Config.RTN_TYPE==1) {

@@ -28,6 +28,7 @@ public class MapperXmlProcessor extends BaseProcessor{
         baseSqlProcessorList.add(new BatchInsertProcessor());
         baseSqlProcessorList.add(new CountByBaseConditionProcessor());
         baseSqlProcessorList.add(new SelectByBaseConditionProcessor());
+        baseSqlProcessorList.add(new BatchUpdateByIdProcessor());
     }
     /**
      *  构建实体类映射XML文件
