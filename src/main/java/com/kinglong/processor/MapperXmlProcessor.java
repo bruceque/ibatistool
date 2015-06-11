@@ -16,9 +16,9 @@ public class MapperXmlProcessor extends BaseProcessor{
 
     static {
         baseSqlProcessorList.add(new BaseResultMapSqlProcessor());
+        baseSqlProcessorList.add(new BaseColumnListProcessor());
         baseSqlProcessorList.add(new BaseConditionSqlProcessor());
         baseSqlProcessorList.add(new SelectByBaseConditionSqlProcessor());
-        baseSqlProcessorList.add(new BaseColumnListProcessor());
         baseSqlProcessorList.add(new DeleteByPrimaryKeyProcessor());
         baseSqlProcessorList.add(new InsertSelectiveProcessor());
         baseSqlProcessorList.add(new InsertProcessor());
@@ -60,10 +60,7 @@ public class MapperXmlProcessor extends BaseProcessor{
         bw.newLine();
         bw.newLine();
 
-
         // 下面开始写SqlMapper中的方法
-        // this.outputSqlMapperMethod(bw, columns, types);
-//        BaseSqlProcessor.buildSQL(bw, columns, types);
         for (BaseSqlProcessor baseSqlProcessor : baseSqlProcessorList) {
             baseSqlProcessor.buildSQL(bw,columns,types,comments);
         }
