@@ -37,6 +37,15 @@ public class BatchUpdateByIdProcessor extends AbstractSqlProcessor {
             bw.write("\t\t\t\t\t");
             bw.write("</if>");
             bw.newLine();
+            bw.write("\t\t\t\t\t");
+            bw.write("<if test=\"item."+tempField+"==null\">");
+            bw.newLine();
+            bw.write("\t\t\t\t\t\t");
+            bw.write("when #{item.id,jdbcType=INTEGER} then "+tempColumn);
+            bw.newLine();
+            bw.write("\t\t\t\t\t");
+            bw.write("</if>");
+            bw.newLine();
             bw.write("\t\t\t\t");
             bw.write("</foreach>");
             bw.newLine();
