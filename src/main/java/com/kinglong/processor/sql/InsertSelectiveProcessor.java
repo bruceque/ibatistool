@@ -15,7 +15,8 @@ public class InsertSelectiveProcessor extends AbstractSqlProcessor {
         //---------------  insert方法（匹配有值的字段）
         bw.write("\t<!-- 添加 （匹配有值的字段）-->");
         bw.newLine();
-        bw.write("\t<insert id=\"insertSelective\" parameterType=\"" + Config.BEAN_PACKAGE+"."+BEAN_NAME + "\">");
+        bw.write("\t<insert id=\"insertSelective\" parameterType=\"" + Config.BEAN_PACKAGE+"."+BEAN_NAME +
+                "\" useGeneratedKeys=\"true\" keyProperty=\""+columns.get(0)+"\">");
         bw.newLine();
         bw.write("\t\t INSERT INTO " + TABLE_NAME);
         bw.newLine();

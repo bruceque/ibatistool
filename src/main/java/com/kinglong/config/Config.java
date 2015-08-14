@@ -28,14 +28,20 @@ public class Config {
 
 
 
-    public final static String TABLE = "db_appoint";
+    public final static String TABLE = "db_offer_list_goods_refund";
 
     public final static String
-            BASE_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/shop/dal/src/main/java/com/tqmall/shop/";
+            BASE_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/tqmallstall/tqmallstall-dal/src/main/java/com/tqmall/tqmallstall/";
+//    public final static String
+//            BASE_PATH = "/Users/chenjinlong/IdeaProjects/tqmall/shop/dal/src/main/java/com/tqmall/shop/";
+//    public final static String
+//            BASE_PATH = "/Users/chenjinlong/IdeaProjects/kinglong/maze/dal/src/main/java/com/kinglong/maze/dal/";
 
-    public final static String BASE_PACKAGE = "com.tqmall.shop";
+    public final static String BASE_PACKAGE = "com.tqmall.tqmallstall";
+//    public final static String BASE_PACKAGE = "com.kinglong.maze.dal";
 
     public final static String  MODULE_NAME = "qa_autoparts"; // 对应模块名称（根据自己模块做相应调整!!!务必修改^_^）
+//    public final static String  MODULE_NAME = "dev_alidb"; // 对应模块名称（根据自己模块做相应调整!!!务必修改^_^）
 
     public final static String BEAN_PATH = BASE_PATH+MODULE_NAME+"/entity";
 
@@ -57,7 +63,14 @@ public class Config {
 
     public final static String PASSWORD = "AI*k#$xv!Kmw";
 
+//    public final static String DRIVER_NAME = "com.mysql.jdbc.Driver";
+//
+//    public final static String USER = "admin";
+//
+//    public final static String PASSWORD = "max6and7";
+
     public final static String URL = "jdbc:mysql://121.199.28.244:3306/" + MODULE_NAME + "?characterEncoding=UTF-8" ;
+//    public final static String URL = "jdbc:mysql://120.26.56.174:3306/" + MODULE_NAME + "?characterEncoding=UTF-8" ;
 
     public static final Integer RTN_TYPE = 0;
     //+ "&amp;zeroDateTimeBehavior=convertToNull";

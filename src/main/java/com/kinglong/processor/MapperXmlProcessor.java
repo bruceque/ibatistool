@@ -21,9 +21,9 @@ public class MapperXmlProcessor extends BaseProcessor{
         baseSqlProcessorList.add(new SelectByBaseConditionSqlProcessor());
         baseSqlProcessorList.add(new DeleteByPrimaryKeyProcessor());
         baseSqlProcessorList.add(new InsertSelectiveProcessor());
-        baseSqlProcessorList.add(new InsertProcessor());
+//        baseSqlProcessorList.add(new InsertProcessor());
         baseSqlProcessorList.add(new SelectByPrimaryKeyProcessor());
-        baseSqlProcessorList.add(new UpdateByPrimaryKeyProcessor());
+//        baseSqlProcessorList.add(new UpdateByPrimaryKeyProcessor());
         baseSqlProcessorList.add(new UpdateByPrimaryKeySelectiveProcessor());
         baseSqlProcessorList.add(new BatchInsertProcessor());
         baseSqlProcessorList.add(new CountByBaseConditionProcessor());

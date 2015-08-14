@@ -15,7 +15,8 @@ public class InsertProcessor extends AbstractSqlProcessor {
         // 添加insert方法
         bw.write("\t<!-- 添加 -->");
         bw.newLine();
-        bw.write("\t<insert id=\"insert\" parameterType=\"" + Config.BEAN_PACKAGE+"."+BEAN_NAME + "\">");
+        bw.write("\t<insert id=\"insert\" parameterType=\"" + Config.BEAN_PACKAGE+"."+BEAN_NAME +
+                "\" useGeneratedKeys=\"true\" keyProperty=\""+columns.get(0)+"\">");
         bw.newLine();
         bw.write("\t\t INSERT INTO " + TABLE_NAME);
         bw.newLine();
