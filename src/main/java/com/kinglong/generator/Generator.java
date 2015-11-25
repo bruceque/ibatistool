@@ -73,4 +73,28 @@ public class Generator {
         MapperProcessor.buildMapper();
         MapperXmlProcessor.buildMapperXml(columns, types, comments);
     }
+
+    public void generateSingle4Python() throws ClassNotFoundException,SQLException,IOException {
+        String tableName = Config.TABLE;
+        Connection conn = Conn.factory().getConn();
+        String prefix = "show full fields from ";
+        List<String> columns = new ArrayList<String>();
+        List<String> types = new ArrayList<String>();
+        List<String> comments = new ArrayList<String>();
+        PreparedStatement pstate = conn.prepareStatement(prefix + tableName);
+        Map<String, String> tableComments = DataBaseManager.getTableComment();
+        ResultSet results = pstate.executeQuery();
+        while ( results.next() ) {
+            columns.add(results.getString("FIELD"));
+            types.add(results.getString("TYPE"));
+            comments.add(results.getString("COMMENT"));
+        }
+        BaseProcessor.TABLE_NAME = tableName;
+        BaseProcessor.processTable(tableName);
+        String tableComment = tableComments.get(BaseProcessor.TABLE_NAME);
+//        BeanQueryParamProcessor.buildBeanQueryParam(columns, types, comments, tableComment);
+        EntityProcessor4Python.buildEntityBean(columns, types, comments, tableComment);
+        MapperProcessor4Python.buildMapper();
+//        MapperXmlProcessor.buildMapperXml(columns, types, comments);
+    }
 }

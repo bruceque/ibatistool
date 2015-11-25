@@ -5,6 +5,10 @@ import com.kinglong.config.Config;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by chenjinlong on 15/6/5.
@@ -69,6 +73,70 @@ public class BaseProcessor {
             return "byte[]";
         }
         return null;
+    }
+
+    public static List<String> getImportType4Python(List<String> types) {
+        List<String> importTypes = new ArrayList<String>();
+        int i = 0;
+        for(String type:types) {
+            String sqlAlchemyType = null;
+            if ( type.indexOf(Config.TYPE_CHAR) > -1 ) {
+                sqlAlchemyType = "String";
+            } else if ( type.indexOf(Config.TYPE_BIGINT) > -1 ) {
+                sqlAlchemyType = "BigInteger";
+            } else if ( type.indexOf(Config.TYPE_INT) > -1 ) {
+                sqlAlchemyType = "SmallInteger";
+            } else if ( type.indexOf(Config.TYPE_DATE) > -1 ) {
+                sqlAlchemyType = "DateTime";
+            } else if ( type.indexOf(Config.TYPE_TEXT) > -1 ) {
+                sqlAlchemyType = "String";
+            } else if ( type.indexOf(Config.TYPE_TIMESTAMP) > -1 ) {
+                sqlAlchemyType = "DateTime";
+            } else if ( type.indexOf(Config.TYPE_BIT) > -1 ) {
+                sqlAlchemyType = "Boolean";
+            } else if ( type.indexOf(Config.TYPE_DECIMAL) > -1 ) {
+                sqlAlchemyType = "Float";
+            } else if ( type.indexOf(Config.TYPE_BLOB) > -1 ) {
+                sqlAlchemyType = "LargeBinary";
+            }
+            if (sqlAlchemyType!=null) {
+                importTypes.add(sqlAlchemyType);
+            }
+        }
+        return importTypes;
+    }
+    public static String processType4Python(String type) {
+        String lenStr = getTypeLen(type);
+        lenStr = lenStr.isEmpty()?"":String.format("(%s)",lenStr);
+        if ( type.indexOf(Config.TYPE_CHAR) > -1 ) {
+            return String.format("String%s", lenStr);
+        } else if ( type.indexOf(Config.TYPE_BIGINT) > -1 ) {
+            return "BigInteger";
+        } else if ( type.indexOf(Config.TYPE_INT) > -1 ) {
+            return "SmallInteger";
+        } else if ( type.indexOf(Config.TYPE_DATE) > -1 ) {
+            return "DateTime";
+        } else if ( type.indexOf(Config.TYPE_TEXT) > -1 ) {
+            return String.format("String%s", lenStr);
+        } else if ( type.indexOf(Config.TYPE_TIMESTAMP) > -1 ) {
+            return "DateTime";
+        } else if ( type.indexOf(Config.TYPE_BIT) > -1 ) {
+            return "Boolean";
+        } else if ( type.indexOf(Config.TYPE_DECIMAL) > -1 ) {
+            return "Float";
+        } else if ( type.indexOf(Config.TYPE_BLOB) > -1 ) {
+            return "LargeBinary";
+        }
+        return null;
+    }
+
+    public static Pattern pattern = Pattern.compile("\\((\\d+)\\)");
+    public static String getTypeLen(String type) {
+        Matcher matcher = pattern.matcher(type);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return "";
     }
 
     public static String processJdbcType( String type) {
@@ -161,6 +229,20 @@ public class BaseProcessor {
         bw.write("\t * ");
         bw.newLine();
         bw.write("\t **/");
+        return bw;
+    }
+
+    public static BufferedWriter buildMethodComment4SqlAlchemy( BufferedWriter bw, String text ) throws IOException {
+        return buildMethodComment4SqlAlchemy(bw,text,"\t");
+    }
+
+    public static BufferedWriter buildMethodComment4SqlAlchemy( BufferedWriter bw, String text,String indent ) throws IOException {
+        bw.newLine();
+        bw.write(indent+"\"\"\"");
+        bw.newLine();
+        bw.write(indent + text);
+        bw.newLine();
+        bw.write(indent+"\"\"\"");
         return bw;
     }
 }
