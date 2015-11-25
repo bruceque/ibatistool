@@ -1,3 +1,4 @@
+/ibatistool.ipr
 *.iml
 .idea/
 .DS_Store
@@ -7,4 +8,3 @@
 logs/
 rebel.xml
 *.log
-.gitignore
