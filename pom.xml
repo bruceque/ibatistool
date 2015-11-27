@@ -11,12 +11,12 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.23</version>
+            <version>5.1.37</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>19.0-rc1</version>
+            <version>19.0-rc2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
