@@ -1,4 +1,4 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class BaseConditionSqlProcessor extends AbstractSqlProcessor {
+public class BaseConditionAutoProcessor extends AbstractAutoProcessor {
+    @Override
     public void buildSQL(BufferedWriter bw,
                          List<String> columns,
                          List<String> types,
@@ -36,5 +37,10 @@ public class BaseConditionSqlProcessor extends AbstractSqlProcessor {
         bw.newLine();
         bw.newLine();
 
+    }
+
+    @Override
+    public void buildMethod(BufferedWriter bw) throws IOException {
+        return;
     }
 }

@@ -1,13 +1,14 @@
 package com.kinglong.processor;
 
 import com.kinglong.config.Config;
+import com.kinglong.processor.auto.common.BaseProcessor;
 
 import java.io.*;
 
 /**
  * Created by chenjinlong on 15/6/5.
  */
-public class MapperProcessor4Python extends BaseProcessor{
+public class MapperProcessor4Python extends BaseProcessor {
     /**
      *  构建Mapper文件
      *

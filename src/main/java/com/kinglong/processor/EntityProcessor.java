@@ -1,6 +1,7 @@
 package com.kinglong.processor;
 
 import com.kinglong.config.Config;
+import com.kinglong.processor.auto.common.BaseProcessor;
 
 import java.io.*;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/5.
  */
-public class EntityProcessor extends BaseProcessor{
+public class EntityProcessor extends BaseProcessor {
     /**
      *  生成实体类
      *

@@ -1,6 +1,7 @@
 package com.kinglong.processor;
 
 import com.kinglong.config.Config;
+import com.kinglong.processor.auto.common.BaseProcessor;
 import com.sun.deploy.util.StringUtils;
 
 import java.io.*;

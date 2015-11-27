@@ -1,6 +1,7 @@
 package com.kinglong.processor;
 
 
+import com.kinglong.processor.auto.common.BaseProcessor;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

@@ -1,4 +1,4 @@
-package com.kinglong.processor;
+package com.kinglong.processor.auto.common;
 
 import com.kinglong.config.Config;
 

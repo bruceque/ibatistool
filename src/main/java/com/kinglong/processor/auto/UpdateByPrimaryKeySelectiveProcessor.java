@@ -1,4 +1,4 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import com.kinglong.config.Config;
 
@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class UpdateByPrimaryKeySelectiveProcessor extends AbstractSqlProcessor {
+public class UpdateByPrimaryKeySelectiveProcessor extends AbstractAutoProcessor {
+    @Override
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types,List<String> comments ) throws IOException {
         int size = columns.size();
 
@@ -43,5 +44,13 @@ public class UpdateByPrimaryKeySelectiveProcessor extends AbstractSqlProcessor {
         bw.newLine();
         bw.newLine();
         // update方法完毕
+    }
+
+    @Override
+    public void buildMethod(BufferedWriter bw) throws IOException {
+        bw = buildMethodComment(bw, "修改 （匹配有值的字段）");
+        bw.newLine();
+        bw.write("\t" + "Integer updateByPrimaryKeySelective( " + BEAN_NAME + " record );");
+        bw.newLine();
     }
 }

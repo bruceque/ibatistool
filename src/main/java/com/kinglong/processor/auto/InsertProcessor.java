@@ -1,4 +1,4 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import com.kinglong.config.Config;
 
@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class InsertProcessor extends AbstractSqlProcessor {
+public class InsertProcessor extends AbstractAutoProcessor {
+    @Override
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types,List<String> comments ) throws IOException {
         int size = columns.size();
         // 添加insert方法
@@ -52,5 +53,13 @@ public class InsertProcessor extends AbstractSqlProcessor {
         bw.newLine();
         bw.newLine();
         // 添加insert完
+    }
+
+    @Override
+    public void buildMethod(BufferedWriter bw) throws IOException {
+        bw = buildMethodComment(bw, "添加");
+        bw.newLine();
+        bw.write("\t" + "Integer insert( " + BEAN_NAME + " record );");
+        bw.newLine();
     }
 }

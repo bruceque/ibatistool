@@ -1,4 +1,4 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -7,7 +7,8 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class BatchUpdateByIdProcessor extends AbstractSqlProcessor {
+public class BatchUpdateByIdProcessor extends AbstractAutoProcessor {
+    @Override
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types, List<String> comments) throws IOException {
         int size = columns.size();
         // 添加batchInsert方法
@@ -68,6 +69,14 @@ public class BatchUpdateByIdProcessor extends AbstractSqlProcessor {
         bw.write("\t\t</foreach>");
         bw.newLine();
         bw.write("\t</update>");
+        bw.newLine();
+    }
+
+    @Override
+    public void buildMethod(BufferedWriter bw) throws IOException {
+        bw = buildMethodComment(bw, "批量更新");
+        bw.newLine();
+        bw.write("\t" + "Integer batchUpdateById ( @Param(\""+BEAN_PARAM_LIST_NAME+"\") List<"+BEAN_NAME+"> "+BEAN_PARAM_LIST_NAME+" );");
         bw.newLine();
     }
 }

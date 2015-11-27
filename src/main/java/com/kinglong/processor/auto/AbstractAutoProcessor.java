@@ -1,12 +1,12 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import com.kinglong.config.Config;
-import com.kinglong.processor.BaseProcessor;
+import com.kinglong.processor.auto.common.BaseProcessor;
 
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public abstract class AbstractSqlProcessor extends BaseProcessor implements BaseSqlProcessor {
+public abstract class AbstractAutoProcessor extends BaseProcessor implements BaseAutoProcessor {
     String tempField = null;
     String tempColumn = null;
 

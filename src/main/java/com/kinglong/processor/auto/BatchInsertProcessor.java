@@ -1,4 +1,4 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import com.kinglong.config.Config;
 
@@ -9,7 +9,8 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class BatchInsertProcessor extends AbstractSqlProcessor {
+public class BatchInsertProcessor extends AbstractAutoProcessor {
+    @Override
     public void buildSQL(BufferedWriter bw,
                          List<String> columns,
                          List<String> types,
@@ -52,5 +53,14 @@ public class BatchInsertProcessor extends AbstractSqlProcessor {
         bw.newLine();
         bw.newLine();
         // 添加batchInsert完
+    }
+
+    @Override
+    public void buildMethod(BufferedWriter bw) throws IOException {
+        bw = buildMethodComment(bw, "批量添加");
+        bw.newLine();
+        bw.write("\t" + "Integer batchInsert ( @Param(\"" + BEAN_PARAM_LIST_NAME
+                + "\") List<" + BEAN_NAME + "> " + BEAN_PARAM_LIST_NAME + " );");
+        bw.newLine();
     }
 }

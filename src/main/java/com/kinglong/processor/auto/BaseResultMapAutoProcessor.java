@@ -1,7 +1,6 @@
-package com.kinglong.processor.sql;
+package com.kinglong.processor.auto;
 
 import com.kinglong.config.Config;
-import com.kinglong.processor.BaseProcessor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,7 +9,9 @@ import java.util.List;
 /**
  * Created by chenjinlong on 15/6/9.
  */
-public class BaseResultMapSqlProcessor extends AbstractSqlProcessor {
+public class BaseResultMapAutoProcessor extends AbstractAutoProcessor {
+
+    @Override
     public void buildSQL(BufferedWriter bw, List<String> columns, List<String> types, List<String> comments) throws IOException {
         bw.write("\t<!--实体映射-->");
         bw.newLine();
@@ -36,8 +37,13 @@ public class BaseResultMapSqlProcessor extends AbstractSqlProcessor {
         bw.newLine();
     }
 
+    @Override
+    public void buildMethod(BufferedWriter bw) throws IOException {
+        return;
+    }
+
     protected static String generatorJdbcType(String type) {
-        String str = BaseProcessor.processJdbcType(type);
+        String str = processJdbcType(type);
         if (str==null) {
             return "";
         }
