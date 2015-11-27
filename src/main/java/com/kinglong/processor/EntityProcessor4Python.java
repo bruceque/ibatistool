@@ -23,12 +23,18 @@ public class EntityProcessor4Python extends BaseProcessor {
             throws IOException {
         File folder = new File(Config.BEAN_PATH);
         if ( !folder.exists() ) {
-            folder.mkdirs();
+            Boolean folderCreateRs = folder.mkdirs();
+            if (!folderCreateRs) {
+                throw new RuntimeException("创建DO目录失败");
+            }
         }
 
         File beanFile = new File(Config.BEAN_PATH, BEAN_NAME + ".py");
         if(!beanFile.exists()) {
-            beanFile.createNewFile();
+            Boolean fileCreateRs = beanFile.createNewFile();
+            if (fileCreateRs) {
+                throw new RuntimeException("创建DO文件失败");
+            }
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(beanFile)));
         bw.write("# -*- coding: utf-8 -*-");

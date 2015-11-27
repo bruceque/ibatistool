@@ -24,11 +24,11 @@ public class InsertSelectiveProcessor extends AbstractAutoProcessor {
         bw.write("\t\t <trim prefix=\"(\" suffix=\")\" suffixOverrides=\",\" >");
         bw.newLine();
 
-        for ( int i = 0 ; i < size ; i++ ) {
-            tempField = processField(columns.get(i));
+        for (String column : columns) {
+            tempField = processField(column);
             bw.write("\t\t\t<if test=\"" + tempField + " != null\">");
             bw.newLine();
-            bw.write("\t\t\t\t " + columns.get(i) + ",");
+            bw.write("\t\t\t\t " + column + ",");
             bw.newLine();
             bw.write("\t\t\t</if>");
             bw.newLine();

@@ -41,6 +41,5 @@ public class BaseConditionAutoProcessor extends AbstractAutoProcessor {
 
     @Override
     public void buildMethod(BufferedWriter bw) throws IOException {
-        return;
     }
 }

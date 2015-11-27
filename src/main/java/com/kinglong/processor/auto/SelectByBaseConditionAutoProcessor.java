@@ -35,7 +35,5 @@ public class SelectByBaseConditionAutoProcessor extends AbstractAutoProcessor {
     }
 
     @Override
-    public void buildMethod(BufferedWriter bw) throws IOException {
-        return;
-    }
+    public void buildMethod(BufferedWriter bw) throws IOException {}
 }

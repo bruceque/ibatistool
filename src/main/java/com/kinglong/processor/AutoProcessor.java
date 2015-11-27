@@ -43,12 +43,18 @@ public class AutoProcessor extends BaseProcessor {
 
         File folder = new File(Config.XML_PATH);
         if ( !folder.exists() ) {
-            folder.mkdirs();
+            Boolean xmlFolderCrateRs = folder.mkdirs();
+            if (!xmlFolderCrateRs) {
+                throw new RuntimeException("创建XML的目录失败");
+            }
         }
 
         File mapperXmlFile = new File(Config.XML_PATH, MAPPER_NAME + ".xml");
         if(!mapperXmlFile.exists()) {
-            mapperXmlFile.createNewFile();
+            Boolean mapperXmalFileCreateRs = mapperXmlFile.createNewFile();
+            if (!mapperXmalFileCreateRs) {
+                throw new RuntimeException("创建XML文件失败");
+            }
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mapperXmlFile)));
         bw.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -74,12 +80,18 @@ public class AutoProcessor extends BaseProcessor {
     public static void buildMapper() throws IOException {
         File folder = new File(Config.MAPPER_PATH);
         if ( !folder.exists() ) {
-            folder.mkdirs();
+            Boolean mapperFolderCreateRs = folder.mkdirs();
+            if (!mapperFolderCreateRs) {
+                throw new RuntimeException("创建Mapper的目录失败");
+            }
         }
 
         File mapperFile = new File(Config.MAPPER_PATH, MAPPER_NAME + ".java");
         if(!mapperFile.exists()) {
-            mapperFile.createNewFile();
+            Boolean mapperFileCreateRs = mapperFile.createNewFile();
+            if (!mapperFileCreateRs) {
+                throw new RuntimeException("创建Mapper文件失败");
+            }
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(mapperFile), "utf-8"));
         bw.write("package " + Config.MAPPER_PACKAGE + ";");

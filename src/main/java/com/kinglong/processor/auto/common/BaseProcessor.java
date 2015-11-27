@@ -34,7 +34,7 @@ public class BaseProcessor {
 
 
     public static void processTable( String table ) {
-        StringBuffer sb = new StringBuffer(table.length());
+        StringBuilder sb = new StringBuilder(table.length());
         String tableNew = table.toLowerCase();
         String[] tables = tableNew.split("_");
         String temp = null;
@@ -53,23 +53,23 @@ public class BaseProcessor {
 
 
     public static String processType( String type ) {
-        if ( type.indexOf(Config.TYPE_CHAR) > -1 ) {
+        if (type.contains(Config.TYPE_CHAR)) {
             return "String";
-        } else if ( type.indexOf(Config.TYPE_BIGINT) > -1 ) {
+        } else if (type.contains(Config.TYPE_BIGINT)) {
             return "Long";
-        } else if ( type.indexOf(Config.TYPE_INT) > -1 ) {
+        } else if (type.contains(Config.TYPE_INT)) {
             return "Integer";
-        } else if ( type.indexOf(Config.TYPE_DATE) > -1 ) {
+        } else if (type.contains(Config.TYPE_DATE)) {
             return "java.util.Date";
-        } else if ( type.indexOf(Config.TYPE_TEXT) > -1 ) {
+        } else if (type.contains(Config.TYPE_TEXT)) {
             return "String";
-        } else if ( type.indexOf(Config.TYPE_TIMESTAMP) > -1 ) {
+        } else if (type.contains(Config.TYPE_TIMESTAMP)) {
             return "java.util.Date";
-        } else if ( type.indexOf(Config.TYPE_BIT) > -1 ) {
+        } else if (type.contains(Config.TYPE_BIT)) {
             return "Boolean";
-        } else if ( type.indexOf(Config.TYPE_DECIMAL) > -1 ) {
+        } else if (type.contains(Config.TYPE_DECIMAL)) {
             return "java.math.BigDecimal";
-        } else if ( type.indexOf(Config.TYPE_BLOB) > -1 ) {
+        } else if (type.contains(Config.TYPE_BLOB)) {
             return "byte[]";
         }
         return null;

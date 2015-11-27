@@ -14,12 +14,18 @@ public class BeanQueryParamProcessor extends BaseProcessor {
             throws IOException {
         File folder = new File(Config.BEAN_PARAM_PATH);
         if ( !folder.exists() ) {
-            folder.mkdirs();
+            Boolean paramFolderCreateRs = folder.mkdirs();
+            if (!paramFolderCreateRs) {
+                throw new RuntimeException("创建Param的目录失败");
+            }
         }
 
         File beanFile = new File(Config.BEAN_PARAM_PATH, BEAN_QUERY_NAME + ".java");
         if(!beanFile.exists()) {
-            beanFile.createNewFile();
+            Boolean queryBeanFileCreateRs = beanFile.createNewFile();
+            if (!queryBeanFileCreateRs) {
+                throw new RuntimeException("创建Param文件失败");
+            }
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(beanFile)));
         bw.write("package " + Config.BEAN_PARAM_PACKAGE + ";");

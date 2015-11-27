@@ -17,12 +17,18 @@ public class MapperProcessor4Python extends BaseProcessor {
     public static void buildMapper() throws IOException {
         File folder = new File(Config.MAPPER_PATH);
         if ( !folder.exists() ) {
-            folder.mkdirs();
+            Boolean folderCreateRs = folder.mkdirs();
+            if (!folderCreateRs) {
+                throw new RuntimeException("创建DO目录失败");
+            }
         }
 
         File mapperFile = new File(Config.MAPPER_PATH, MAPPER_NAME + ".py");
         if(!mapperFile.exists()) {
-            mapperFile.createNewFile();
+            Boolean fileCreateRs = mapperFile.createNewFile();
+            if (fileCreateRs) {
+                throw new RuntimeException("创建DO文件失败");
+            }
         }
 
 

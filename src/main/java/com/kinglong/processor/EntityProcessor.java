@@ -22,12 +22,18 @@ public class EntityProcessor extends BaseProcessor {
             throws IOException {
         File folder = new File(Config.BEAN_PATH);
         if ( !folder.exists() ) {
-            folder.mkdirs();
+            Boolean doFolderCreateRs = folder.mkdirs();
+            if(!doFolderCreateRs) {
+                throw new RuntimeException("创建DO目录失败");
+            }
         }
 
         File beanFile = new File(Config.BEAN_PATH, BEAN_NAME + ".java");
         if(!beanFile.exists()) {
-            beanFile.createNewFile();
+            Boolean doFileCreateRs = beanFile.createNewFile();
+            if (!doFileCreateRs) {
+                throw new RuntimeException("创建DO文件失败");
+            }
         }
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(beanFile)));
         bw.write("package " + Config.BEAN_PACKAGE + ";");
