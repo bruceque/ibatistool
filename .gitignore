@@ -7,4 +7,8 @@
 .settings
 logs/
 rebel.xml
+/src/main/resources/finance
+/src/main/resources/maze
+/src/main/resources/tqmallstall
+/src/main/resources/wind
 *.log
