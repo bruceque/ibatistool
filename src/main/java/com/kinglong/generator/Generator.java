@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class Generator {
 
-    public void generate4SingleTable() throws ClassNotFoundException,SQLException,IOException {
+    public void generate4SingleTable(boolean noGenerateExt) throws ClassNotFoundException,SQLException,IOException {
         String tableName = Config.TABLE;
         Connection conn = Conn.factory().getConn();
         String prefix = "show full fields from ";
@@ -42,6 +42,10 @@ public class Generator {
         EntityProcessor.buildEntityBean(columns, types, comments, tableComment);
         AutoProcessor.buildMapperXml(columns, types, comments);
         AutoProcessor.buildMapper();
+        if(!noGenerateExt){
+            AutoProcessor.buildMapperExtXml(columns, types, comments);
+            AutoProcessor.buildMapperExt();
+        }
     }
 
     public void generateSingle4Python() throws ClassNotFoundException,SQLException,IOException {

@@ -22,6 +22,8 @@ public class BaseProcessor {
 
     public static String MAPPER_NAME = null;
 
+    public static String MAPPER_EXT_NAME = null;
+
     public static String BEAN_PARAM_NAME = null;
 
     public static String BEAN_FULL_NAME = null;
@@ -44,6 +46,7 @@ public class BaseProcessor {
         }
         BEAN_NAME = sb.toString()+"DO";
         MAPPER_NAME = sb.toString() + "Mapper";
+        MAPPER_EXT_NAME = sb.toString() + "MapperExt";
         BEAN_PARAM_NAME = processResultMapId(BEAN_NAME);
         BEAN_FULL_NAME = Config.BEAN_PACKAGE+"."+BEAN_NAME;
         BEAN_PARAM_LIST_NAME = BEAN_PARAM_NAME+"List";

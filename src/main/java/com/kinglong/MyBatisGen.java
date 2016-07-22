@@ -13,7 +13,9 @@ import java.sql.SQLException;
 public class MyBatisGen {
     public static void main(String[] args) {
         try {
-            new Generator().generate4SingleTable();
+            //不生产扩展接口和xml
+            boolean noGenerateExt = true;
+            new Generator().generate4SingleTable(noGenerateExt);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
