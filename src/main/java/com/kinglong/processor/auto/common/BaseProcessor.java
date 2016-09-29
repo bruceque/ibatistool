@@ -40,7 +40,7 @@ public class BaseProcessor {
         String tableNew = table.toLowerCase();
         String[] tables = tableNew.split("_");
         String temp = null;
-        for ( int i = 1 ; i < tables.length ; i++ ) {
+        for ( int i = 0 ; i < tables.length ; i++ ) {
             temp = tables[i].trim();
             sb.append(temp.substring(0, 1).toUpperCase()).append(temp.substring(1));
         }
@@ -110,7 +110,7 @@ public class BaseProcessor {
     }
     public static String processType4Python(String type) {
         String lenStr = getTypeLen(type);
-        lenStr = lenStr.isEmpty()?"":String.format("(%s)",lenStr);
+        lenStr = lenStr==null?"":String.format("(%s)",lenStr);
         if ( type.indexOf(Config.TYPE_CHAR) > -1 ) {
             return String.format("String%s", lenStr);
         } else if ( type.indexOf(Config.TYPE_BIGINT) > -1 ) {

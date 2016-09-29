@@ -14,7 +14,7 @@ public class MyBatisGen {
     public static void main(String[] args) {
         try {
             //不生产扩展接口和xml
-            boolean noGenerateExt = true;
+            boolean noGenerateExt = false;
             new Generator().generate4SingleTable(noGenerateExt);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
